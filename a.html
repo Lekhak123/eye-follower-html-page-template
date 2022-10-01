@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: #000;
+                color: #fff;
+                padding: 0;
+                margin: 0;
+            }
+            main {
+                display: grid;
+                place-items: center;
+                min-height: 100vh;
+                position: relative;
+            }
+            #eyes,
+            #eyes img {
+                position: absolute;
+             
+            }
+
+        </style>
+        <main>
+            <img id="anchor" src="https://media.discordapp.net/attachments/1025732232255643678/1025732273691185223/a.jpg">
+            <div id="eyes">
+                <img src="https://media.discordapp.net/attachments/1025732232255643678/1025732273997348894/aa-modified.png" class="eye" style="top:-38px;right:45px">
+                <img src="https://media.discordapp.net/attachments/1025732232255643678/1025732273997348894/aa-modified.png" class="eye" style="top:-40px;right:-27px">
+
+            </div>
+        </main>
+        <script>
+            document.addEventListener('mousemove',(e)=>{
+               const mouseX = e.clientX;
+               const mouseY = e.clientY;
+               const anchor = document.getElementById("anchor")
+               const rekt = anchor.getBoundingClientRect();
+               const anchorX = rekt.left + rekt.width /2;
+               const anchorY = rekt.top + rekt.height /2;
+               const angleDeg = angle(mouseX,mouseY,anchorX,anchorY)
+               const eyes = document.querySelectorAll(".eye")
+               eyes.forEach(eye =>{
+                eye.style.transform = `rotate(${90 + angleDeg}deg)`;
+               })
+
+            })
+            function angle(cx,cy,ex,ey){
+                const dy = ey - cy;
+                const dx= ex-cx;
+                const rad = Math.atan2(dy,dx);
+                const deg = rad *180/ Math.PI;
+                return deg
+            }
+        </script>
+    </body>
+</html>
